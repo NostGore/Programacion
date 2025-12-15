@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SendEmail - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="data.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-paper-plane"></i>
+                    <h1>SendEmail</h1>
+                </div>
+                <div class="user-info">
+                    <span>Bienvenido, Admin</span>
+                    <button class="theme-toggle" id="theme-toggle" title="Cambiar tema">
+                        <i class="fas fa-moon" id="theme-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="total-emails">0</div>
+                <div class="stat-label">Correos guardados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="emails-sent">0</div>
+                <div class="stat-label">Correos enviados</div>
+            </div>
+        </div>
+        
+        <div class="dashboard">
+            <div class="column">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Escribir Mensaje</h2>
+                    </div>
+                    <form id="email-form">
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <div class="editor-controls">
+                                <button type="button" class="btn btn-small btn-secondary" id="toggle-editor-size">
+                                    <i class="fas fa-expand"></i> <span id="size-text">Expandir</span>
+                                </button>
+                                <input type="range" id="editor-size-slider" min="200" max="600" value="200" style="display: none;">
+                            </div>
+                            <div id="editor" style="height: 200px; transition: height 0.3s ease;"></div>
+                            <input type="hidden" id="message" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Enviar Correo
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="column">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Lista de Correos</h2>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="new-email" placeholder="Ingresa un correo electrónico">
+                        <button class="btn btn-success btn-small" id="save-email-btn" style="margin-top: 10px; width: 100%;">
+                            <i class="fas fa-save"></i> Guardar Correo
+                        </button>
+                    </div>
+                    
+                    <div id="emails-container">
+                        <ul class="email-list" id="email-list">
+                        </ul>
+                        <div class="empty-state" id="empty-state">
+                            <i class="fas fa-envelope-open"></i>
+                            <p>No hay correos guardados</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="notification" id="notification"></div>
+    <script src="script.js"></script>
+</body>
+</html>
